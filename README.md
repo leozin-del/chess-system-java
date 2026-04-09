@@ -1,291 +1,160 @@
-<div align="center">
+# 💈 BarbeariaPro - Sistema de Gestão para Barbearias
 
-```
-██████╗  █████╗ ██████╗ ██████╗ ███████╗██████╗ ███████╗██╗  ██╗ ██████╗ ██████╗ 
-██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔════╝██║  ██║██╔═══██╗██╔══██╗
-██████╔╝███████║██████╔╝██████╔╝█████╗  ██████╔╝███████╗███████║██║   ██║██████╔╝
-██╔══██╗██╔══██║██╔══██╗██╔══██╗██╔══╝  ██╔══██╗╚════██║██╔══██║██║   ██║██╔═══╝ 
-██████╔╝██║  ██║██║  ██║██████╔╝███████╗██║  ██║███████║██║  ██║╚██████╔╝██║     
-╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝     
-```
+## 🚀 Sobre o Projeto
 
-# ✂️ BarberShop — Sistema de Agendamento
+O **BarbeariaPro** é um sistema backend desenvolvido com **Spring Boot**, com o objetivo de gerenciar uma barbearia de forma simples e eficiente.
 
-**Gestão completa de agendamentos para barbearias modernas**
+A aplicação permite o controle de:
 
-[![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
-[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
-[![Maven](https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white)](https://maven.apache.org/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-
-</div>
+* 👤 Clientes
+* ✂️ Barbeiros
+* 📅 Agendamentos
+* 💼 Serviços
+* 🔐 Usuários (com papéis CLIENTE e BARBEIRO)
 
 ---
 
-## 📖 Sobre o Projeto
+## 🛠️ Tecnologias Utilizadas
 
-O **BarberShop** é uma API REST robusta desenvolvida com **Spring Boot** para gerenciar agendamentos de barbearias de forma eficiente. O sistema permite que clientes realizem agendamentos online, enquanto barbeiros e administradores têm controle total sobre a agenda, serviços e clientes.
-
-> 💡 Desenvolvido com foco em **clean architecture**, **boas práticas REST** e **segurança robusta**.
-
----
-
-## 🚀 Funcionalidades
-
-| Módulo | Funcionalidades |
-|--------|----------------|
-| 👤 **Clientes** | Cadastro, autenticação, histórico de cortes |
-| ✂️ **Barbeiros** | Perfil profissional, agenda personalizada, especialidades |
-| 📅 **Agendamentos** | Criação, cancelamento, reagendamento em tempo real |
-| 💈 **Serviços** | Catálogo de serviços com preços e duração |
-| 🔐 **Autenticação** | JWT com controle de perfis (ADMIN, BARBEIRO, CLIENTE) |
-| 📊 **Relatórios** | Dashboard com métricas e faturamento |
-| 🔔 **Notificações** | Lembretes automáticos de agendamento |
+* ☕ Java 17+
+* 🌱 Spring Boot
+* 🗄️ Spring Data JPA / Hibernate
+* 🐬 MySQL
+* 🐳 Docker & Docker Compose
+* 🔧 Maven
 
 ---
 
-## 🏗️ Arquitetura
+## 📦 Arquitetura
 
-```
-barbershop/
-├── 📁 src/
-│   ├── 📁 main/
-│   │   ├── 📁 java/com/barbershop/
-│   │   │   ├── 📁 config/          # Configurações (Security, Swagger, etc.)
-│   │   │   ├── 📁 controller/      # Camada de apresentação (REST)
-│   │   │   ├── 📁 service/         # Regras de negócio
-│   │   │   ├── 📁 repository/      # Acesso a dados (JPA)
-│   │   │   ├── 📁 model/           # Entidades JPA
-│   │   │   ├── 📁 dto/             # Data Transfer Objects
-│   │   │   ├── 📁 exception/       # Tratamento global de erros
-│   │   │   └── 📁 security/        # JWT, filtros e autenticação
-│   │   └── 📁 resources/
-│   │       ├── application.yml
-│   │       └── db/migration/       # Migrations Flyway
-│   └── 📁 test/                    # Testes unitários e integração
-├── 🐳 docker-compose.yml
-├── 📄 pom.xml
-└── 📄 README.md
-```
+A aplicação segue o padrão de arquitetura:
+
+* Controller → recebe requisições HTTP
+* Service → regras de negócio
+* Repository → acesso ao banco
+* Entity → mapeamento das tabelas
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
+## 🐳 Como Rodar com Docker
 
-### Back-end
-- **Java 17** — LTS com suporte a records e sealed classes
-- **Spring Boot 3.x** — Framework principal
-- **Spring Security + JWT** — Autenticação e autorização
-- **Spring Data JPA + Hibernate** — ORM e acesso ao banco
-- **Flyway** — Versionamento e migrations do banco de dados
-- **MapStruct** — Mapeamento de DTOs
+### 🔹 Pré-requisitos
 
-### Banco de Dados
-- **PostgreSQL** — Banco de dados principal
-- **Redis** *(opcional)* — Cache de sessões e dados frequentes
-
-### Documentação & Testes
-- **Swagger / OpenAPI 3** — Documentação interativa da API
-- **JUnit 5 + Mockito** — Testes unitários
-- **Testcontainers** — Testes de integração com banco real
-
-### DevOps
-- **Docker + Docker Compose** — Containerização
-- **GitHub Actions** — CI/CD pipeline
+* Docker instalado (Docker Desktop)
 
 ---
 
-## 🔗 Endpoints da API
-
-### 🔐 Autenticação
-```http
-POST   /api/v1/auth/register     → Cadastro de novo usuário
-POST   /api/v1/auth/login        → Login e geração do token JWT
-POST   /api/v1/auth/refresh      → Renovar token
-```
-
-### 📅 Agendamentos
-```http
-GET    /api/v1/agendamentos           → Listar agendamentos (com filtros)
-POST   /api/v1/agendamentos           → Criar novo agendamento
-GET    /api/v1/agendamentos/{id}      → Buscar agendamento por ID
-PUT    /api/v1/agendamentos/{id}      → Atualizar agendamento
-DELETE /api/v1/agendamentos/{id}      → Cancelar agendamento
-GET    /api/v1/agendamentos/disponiveis → Horários disponíveis
-```
-
-### ✂️ Barbeiros
-```http
-GET    /api/v1/barbeiros              → Listar barbeiros
-GET    /api/v1/barbeiros/{id}         → Perfil do barbeiro
-GET    /api/v1/barbeiros/{id}/agenda  → Agenda do barbeiro
-```
-
-### 💈 Serviços
-```http
-GET    /api/v1/servicos               → Catálogo de serviços
-POST   /api/v1/servicos               → Criar serviço (ADMIN)
-PUT    /api/v1/servicos/{id}          → Editar serviço (ADMIN)
-DELETE /api/v1/servicos/{id}          → Remover serviço (ADMIN)
-```
-
----
-
-## 🐳 Como Executar
-
-### Pré-requisitos
-- [Java 17+](https://adoptium.net/)
-- [Maven 3.8+](https://maven.apache.org/)
-- [Docker & Docker Compose](https://www.docker.com/)
-
-### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/barbershop.git
-cd barbershop
-```
-
-### 2. Suba o banco de dados com Docker
-```bash
-docker-compose up -d
-```
-
-### 3. Configure as variáveis de ambiente
-```bash
-cp .env.example .env
-# Edite o arquivo .env com suas configurações
-```
-
-```env
-# .env
-DB_HOST=localhost
-DB_PORT=5432
-DB_NAME=barbershop
-DB_USER=postgres
-DB_PASSWORD=sua_senha
-
-JWT_SECRET=sua_chave_secreta_jwt
-JWT_EXPIRATION=86400000
-```
-
-### 4. Execute a aplicação
-```bash
-mvn spring-boot:run
-```
-
-### 5. Acesse a documentação
-```
-🌐 API:      http://localhost:8080/api/v1
-📚 Swagger:  http://localhost:8080/swagger-ui.html
-```
-
----
-
-## 🧪 Executando os Testes
+### 🔹 Passo a passo
 
 ```bash
-# Todos os testes
-mvn test
+# Clonar o repositório
+git clone <URL_DO_REPOSITORIO>
 
-# Apenas testes unitários
-mvn test -Dgroups=unit
+# Entrar na pasta
+cd barbeariapro
 
-# Apenas testes de integração
-mvn test -Dgroups=integration
 
-# Com relatório de cobertura
-mvn verify jacoco:report
-# Relatório em: target/site/jacoco/index.html
+# Subir aplicação + banco
+docker compose up --build
 ```
 
 ---
 
-## 🔒 Segurança
-
-O sistema implementa autenticação stateless via **JWT (JSON Web Token)**:
+### 🔹 Acessar aplicação
 
 ```
-Cliente → POST /auth/login → Recebe JWT
-Cliente → Requisição + Header: Authorization: Bearer {token}
-Servidor → Valida JWT → Processa requisição
-```
-
-**Perfis de acesso:**
-| Role | Permissões |
-|------|-----------|
-| `ROLE_ADMIN` | Acesso total ao sistema |
-| `ROLE_BARBEIRO` | Gerencia própria agenda e atendimentos |
-| `ROLE_CLIENTE` | Realiza e consulta seus agendamentos |
-
----
-
-## 🗃️ Modelo de Dados
-
-```
-┌─────────────┐       ┌──────────────────┐       ┌─────────────┐
-│   Usuario   │       │   Agendamento    │       │   Servico   │
-├─────────────┤       ├──────────────────┤       ├─────────────┤
-│ id          │──┐    │ id               │──┐    │ id          │
-│ nome        │  │    │ cliente_id (FK)  │  └───>│ nome        │
-│ email       │  └───>│ barbeiro_id (FK) │       │ descricao   │
-│ senha       │       │ servico_id (FK)  │       │ preco       │
-│ telefone    │       │ data_hora        │       │ duracao_min │
-│ role        │       │ status           │       └─────────────┘
-└─────────────┘       │ observacoes      │
-                      └──────────────────┘
+http://localhost:8080
 ```
 
 ---
 
-## 📊 Roadmap
+## 🧪 Testando a API
 
-- [x] CRUD de clientes e barbeiros
-- [x] Sistema de agendamentos
-- [x] Autenticação com JWT
-- [x] Documentação com Swagger
-- [ ] Notificações por e-mail
-- [ ] Integração com WhatsApp (Twilio)
-- [ ] Dashboard administrativo
-- [ ] App mobile (React Native)
-- [ ] Sistema de avaliações
-- [ ] Pagamento online
+Como este projeto é um **backend**, você pode testar utilizando:
+
+* Postman
+* Insomnia
 
 ---
 
-## 🤝 Contribuindo
+## 📊 Estrutura do Banco
 
-Contribuições são muito bem-vindas! Siga os passos abaixo:
+O sistema cria automaticamente as tabelas:
 
-```bash
-# 1. Faça um fork do projeto
-# 2. Crie sua branch de feature
-git checkout -b feature/minha-feature
+* usuarios
+* clientes
+* barbeiros
+* servicos
+* agendamentos
 
-# 3. Commit suas mudanças
-git commit -m 'feat: adiciona minha feature incrível'
+---
 
-# 4. Push para a branch
-git push origin feature/minha-feature
+## 🔐 Regras de Negócio
 
-# 5. Abra um Pull Request
+* Um usuário pode ser **CLIENTE ou BARBEIRO**
+* Cada cliente/barbeiro está vinculado a um usuário
+* Agendamentos conectam:
+
+  * Cliente
+  * Barbeiro
+  * Serviço
+* Status de agendamento:
+
+  * AGENDADO
+  * CANCELADO
+  * CONCLUIDO
+
+---
+
+## ⚙️ Configuração
+
+A aplicação utiliza:
+
+```properties
+spring.jpa.hibernate.ddl-auto=update
 ```
 
-> Siga o padrão [Conventional Commits](https://www.conventionalcommits.org/pt-br/) para as mensagens de commit.
+👉 Ou seja, o banco é criado automaticamente.
 
 ---
 
-## 📄 Licença
+## 💡 Objetivo do Projeto
 
-Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto foi desenvolvido com foco em:
+
+* Aprendizado de Spring Boot
+* Integração com banco de dados
+* Uso de Docker em ambiente real
+* Simulação de um sistema de gestão completo
 
 ---
 
-<div align="center">
+## 🚀 Possíveis Melhorias Futuras
 
-Feito com ☕ e muito ❤️ usando **Spring Boot**
+* 🔐 Autenticação com JWT
+* 📊 Dashboard administrativo
+* 🌐 Frontend (React ou Angular)
+* 📅 Controle de horários disponíveis
+* 💳 Integração com pagamentos
 
-⭐ Se este projeto te ajudou, deixa uma estrela no repositório!
+---
 
-[![GitHub stars](https://img.shields.io/github/stars/seu-usuario/barbershop?style=social)](https://github.com/seu-usuario/barbershop)
+## 👨‍💻 Autor
 
-</div>
+Desenvolvido por você 🚀
+(Coloque aqui seu nome depois)
+
+---
+
+## ⭐ Considerações
+
+Este projeto demonstra habilidades em:
+
+* Backend com Spring Boot
+* Modelagem de banco de dados
+* Containerização com Docker
+* Organização de projeto profissional
+
+---
+
+💈 *BarbeariaPro - Simplificando a gestão da sua barbearia*
